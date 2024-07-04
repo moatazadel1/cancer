@@ -8,6 +8,7 @@ class PdfState extends ChangeNotifier {
   List<String>? _details;
   String? _percentage;
   String? _pdfPath;
+  String? _patientId; // Add the patientId field
 
   PdfState({
     String? userName,
@@ -16,12 +17,14 @@ class PdfState extends ChangeNotifier {
     List<String>? details,
     String? percentage,
     String? pdfPath,
+    String? patientId, // Include patientId in the constructor
   })  : _userName = userName,
         _title = title,
         _safetyStatus = safetyStatus,
         _details = details,
         _percentage = percentage,
-        _pdfPath = pdfPath;
+        _pdfPath = pdfPath,
+        _patientId = patientId;
 
   String? get userName => _userName;
   String? get title => _title;
@@ -29,6 +32,7 @@ class PdfState extends ChangeNotifier {
   List<String>? get details => _details;
   String? get percentage => _percentage;
   String? get pdfPath => _pdfPath;
+  String? get patientId => _patientId; // Add the getter for patientId
 
   Future<void> setPdfPath(String path) async {
     _pdfPath = path;
@@ -55,6 +59,12 @@ class PdfState extends ChangeNotifier {
     _safetyStatus = safetyStatus;
     _details = details;
     _percentage = percentage;
+    notifyListeners();
+  }
+
+  // Add a method to set the patientId
+  void setPatientId(String patientId) {
+    _patientId = patientId;
     notifyListeners();
   }
 }

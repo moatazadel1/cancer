@@ -13,45 +13,93 @@ class JoinAsScreen extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.only(right: 20, left: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.15,
-              ),
-              Image.asset(AppAssets.undrawImg),
-              const SizedBox(
-                height: 22,
-              ),
-              const Text(
-                "Join As",
-                style: TextStyle(
-                  fontSize: 24,
+          child: SingleChildScrollView(
+            child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 79,
                 ),
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              GestureDetector(
-                onTap: () {
-                  GoRouter.of(context)
-                      .push(AppRoutes.kLoginView, extra: 'patient');
-                },
-                child: const CustomJoinAsContainer(
-                    image: AppAssets.profileBoldImg, textName: 'Patient'),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .04,
-              ),
-              GestureDetector(
-                onTap: () {
-                  GoRouter.of(context)
-                      .push(AppRoutes.kLoginView, extra: 'doctor');
-                },
-                child: const CustomJoinAsContainer(
-                    image: AppAssets.doctorImg, textName: 'Doctor'),
-              ),
-            ],
+                const SizedBox(
+                  width: 182,
+                  child: Text(
+                    'Welcome!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 32,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12,),
+                Image.asset(AppAssets.joinAsImg,height: MediaQuery.sizeOf(context).height * 0.4,),
+                const SizedBox(
+                  height: 55,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 25),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Log in as a :',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 22,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context)
+                        .push(AppRoutes.kLoginView, extra: 'patient');
+                  },
+                  child: const CustomJoinAsContainer(
+                      textName: Text(
+                        'PATIENT',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w600,
+                          height: 0,
+                        ),
+                      )),
+                ),
+                const SizedBox(
+                  height: 47,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context)
+                        .push(AppRoutes.kLoginView, extra: 'doctor');
+                  },
+                  child: const CustomJoinAsContainer(
+                      textName: Text(
+                        'DOCTOR',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w600,
+                          height: 0,
+                        ),
+                      )),
+                ),
+              ],
+            ),
           ),
         ),
       ),

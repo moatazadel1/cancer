@@ -1,13 +1,15 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:breast_cancer/core/utils/app_assets.dart';
 import 'package:breast_cancer/core/utils/app_methods.dart';
 import 'package:breast_cancer/core/widgets/custom_button.dart';
 import 'package:breast_cancer/features/authentication/model/user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../../core/utils/app_routes.dart';
 import '../../../../../core/utils/create_pdf.dart';
 import '../../../../profile/presentation/view_model/pdf_provider.dart';
@@ -55,6 +57,42 @@ class _ResultViewBodyState extends State<ResultViewBody> {
       });
     }
   }
+
+  Future<void> savePdfAndData() async {
+    // Sample data for PDF creation
+    String userName = userModel?.userName ?? "User Name";
+    const String title = 'Lorem Ipsum';
+    const String safetyStatus = 'You are in safe';
+    final List<String> details = [
+      'Lorem Ipsum is simply dummy',
+      'Lorem Ipsum is simply dummy',
+      'Lorem Ipsum is simply dummy',
+      'Lorem Ipsum is simply dummy',
+    ];
+    const String percentage = '76%';
+
+    // Generate PDF
+    final pdfFile = await createPdf(userName, title, safetyStatus, details, percentage);
+
+    // Save PDF to Firebase Storage
+    final storageRef = FirebaseStorage.instance.ref().child('pdfs/${user!.uid}/${pdfFile.path.split('/').last}');
+    await storageRef.putFile(File(pdfFile.path));
+    final pdfUrl = await storageRef.getDownloadURL();
+
+    // Save data and PDF URL to Firestore
+    await FirebaseFirestore.instance.collection('patients').doc(user!.uid).update({
+      'userName': userName,
+      'title': title,
+      'safetyStatus': safetyStatus,
+      'details': details,
+      'percentage': percentage,
+      'pdfUrl': pdfUrl,
+    });
+
+    context.read<PdfState>().setPdfPath(pdfFile.path); // Store the PDF path in the state
+    GoRouter.of(context).push(AppRoutes.kPdfView, extra: pdfFile.path);
+  }
+
 
   @override
   void initState() {
@@ -246,16 +284,7 @@ class _ResultViewBodyState extends State<ResultViewBody> {
               padding: const EdgeInsets.symmetric(horizontal: 28),
               child: CustomButton(
                 title: 'Continue',
-                onTap: () async {
-                                    final pdfFile = await createPdf(
-                      userName, title, safetyStatus, details, percentage);
-                  context.read<PdfState>().setPdfPath(
-                      pdfFile.path); // Store the PDF path in the state
-
-                  GoRouter.of(context)
-                      .push(AppRoutes.kPdfView, extra: pdfFile.path);
-
-                },
+                onTap: savePdfAndData,
               ),
             ),
           ],

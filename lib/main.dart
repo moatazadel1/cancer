@@ -40,6 +40,10 @@ class BreastCancer extends StatelessWidget {
     return Consumer<LanguageProvider>(
       builder: (context, languageProvider, child) {
         return MaterialApp.router(
+          theme: ThemeData(
+            scaffoldBackgroundColor: Colors.white,
+            appBarTheme: const AppBarTheme(backgroundColor: Colors.white)
+          ),
           locale: languageProvider.locale,
           localizationsDelegates: const [
             S.delegate,

@@ -26,4 +26,8 @@ class AppAssets {
   static const String themeLightImg = 'assets/images/theme_light.png';
   static const String backgroundImg = 'assets/images/bk_app.svg';
   static const String doctorImg = 'assets/images/doctor.png';
+  static const String joinAsImg = 'assets/images/joinAs.png';
+  static const String personImg = 'assets/images/person.png';
+  static const String medicalinpatientImg = 'assets/images/medicalinpatient.png';
+
 }

@@ -12,12 +12,14 @@ import 'package:breast_cancer/features/profile/presentation/views/privacy_view.d
 import 'package:breast_cancer/features/profile/presentation/views/profile_view.dart';
 import 'package:breast_cancer/features/profile/presentation/views/widgets/doctor_access_view.dart';
 import 'package:breast_cancer/features/profile/presentation/views/widgets/edit_profile.dart';
+import 'package:breast_cancer/features/profile/presentation/views/widgets/patient_access_view.dart';
 import 'package:breast_cancer/features/profile/presentation/views/widgets/pdf_view.dart';
 import 'package:breast_cancer/features/splash/presentation/views/splash_view.dart';
 import 'package:breast_cancer/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/profile/presentation/views/widgets/edit_pdf_view.dart';
 import '../widgets/edit_info_screen.dart';
 
 abstract class AppRoutes {
@@ -35,7 +37,10 @@ abstract class AppRoutes {
   static const String kJoinAsView = '/JoinAsView';
   static const String kPdfView = '/PdfView';
   static const String kDoctorAccessView = '/DoctorAccessView';
+  static const String kPatientAccessView = '/PatientAccessView';
   static const String kEditInfoView = '/EditInfoView';
+  static const String kEditPdfView = '/EditPdfView';
+
 
   static final router = GoRouter(
     routes: [
@@ -119,11 +124,37 @@ abstract class AppRoutes {
       GoRoute(
           path: kPdfView,
           builder: (context, state) {
-            return const PdfView();
+            final args = state.extra as PdfViewArguments;
+
+            return  PdfView(
+              patientId: args.patientId,
+              pdfPath: args.pdfPath,
+            );
           }),
       GoRoute(
         path: kDoctorAccessView,
-        builder: (context, state) => const DoctorAccessView(),
+        builder: (context, state) {
+          final pdfPath = state.extra as String;
+          return  DoctorAccessView(
+            pdfPath: pdfPath,
+          );
+  },),
+      GoRoute(
+          path: kPatientAccessView,
+          builder: (context, state) {
+            final pdfPath = state.extra as String;
+            return   PatientAccessView(
+              // pdfPath: pdfPath,
+            );
+          }
+      ),
+      GoRoute(
+        path: kEditPdfView,
+        name: AppRoutes.kEditPdfView,
+        builder: (context, state) {
+          final patientId = state.extra as String;
+          return EditPdfScreen(patientId: patientId);
+        },
       ),
       GoRoute(
         path: kEditInfoView,

@@ -10,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  // final StorageService _storageService = StorageService();
 
   SignUpCubit() : super(SignUpInitial());
 
@@ -18,12 +17,8 @@ class SignUpCubit extends Cubit<SignUpState> {
     required GlobalKey<FormState> formKey,
     required BuildContext context,
     required TextEditingController emailController,
-    // TextEditingController? yearsOfExperienceController,
     required TextEditingController passwordController,
     TextEditingController? contactNumberController,
-    // TextEditingController? dateOfBirthController,
-    // TextEditingController? licenseNoController,
-    // TextEditingController? licensingOrganizationController,
     required TextEditingController nameController,
     TextEditingController? nickNameController,
     TextEditingController? countryController,
@@ -37,25 +32,9 @@ class SignUpCubit extends Cubit<SignUpState> {
     if (formKey.currentState != null) {
       final isValid = formKey.currentState!.validate();
       FocusScope.of(context).unfocus();
-      // if (pickedImage == null) {
-      //   AppMethods.showErrorORWarningDialog(
-      //     context: context,
-      //     subtitle: "Make sure to pick up an image",
-      //     fct: () {},
-      //   );
-      //   return;
-      // }
-
       if (isValid) {
         formKey.currentState!.save();
         emit(SignUpLoading());
-        // final ref = FirebaseStorage.instance
-        //     .ref()
-        //     .child("usersImages")
-        //     .child('${emailController.text.trim()}.jpg');
-        // await ref.putFile(File(pickedImage.path));
-        // userImageUrl = await ref.getDownloadURL();
-
         try {
           final auth = FirebaseAuth.instance;
           final authResult = await auth.createUserWithEmailAndPassword(
@@ -64,12 +43,6 @@ class SignUpCubit extends Cubit<SignUpState> {
           );
           final user = authResult.user;
           final uid = user!.uid;
-          // String? imageUrl;
-          // if (imageFile != null) {
-          //   imageUrl =
-          //       await _storageService.uploadImageToStorage(uid, imageFile);
-          // }
-
           await FirebaseFirestore.instance
               .collection(collectionName)
               .doc(uid)
@@ -78,18 +51,11 @@ class SignUpCubit extends Cubit<SignUpState> {
             'userName': nameController.text,
             'userEmail': emailController.text.toLowerCase(),
             'createdAt': Timestamp.now(),
-            // 'profileImageUrl': userImageUrl,
             'contactNumber': contactNumberController?.text ?? "",
             'address': addressController?.text ?? "",
             'gender': genderController?.text ?? "",
             'country': countryController?.text ?? "",
             'nickName': nickNameController?.text ?? "",
-            // 'dateOfBirth': dateOfBirthController?.text ?? "",
-            // 'yearsOfExperienceController':
-            //     yearsOfExperienceController?.text ?? "",
-            // 'licenseNo': licenseNoController?.text ?? "",
-            // 'licensingOrganization':
-            //     licensingOrganizationController?.text ?? "",
           });
           Fluttertoast.showToast(
             msg: "An account has been created",
@@ -117,21 +83,10 @@ class SignUpCubit extends Cubit<SignUpState> {
       }
     }
   }
-
-  // Future<String> _uploadImageToStorage(String uid, XFile imageFile) async {
-  //   final storageRef =
-  //       FirebaseStorage.instance.ref().child('userImages/$uid.jpg');
-  //   final uploadTask = storageRef.putFile(File(imageFile.path));
-  //   final snapshot = await uploadTask;
-  //   return await snapshot.ref.getDownloadURL();
-  // }
-
   Future<void> updateUser({
     required String collectionName,
     String? name,
     String? contactNumber,
-    // String? dateOfBirth,
-    // String? userImageUrl,
     String? userEmail,
     String? country,
     String? gender,
@@ -175,6 +130,24 @@ class SignUpCubit extends Cubit<SignUpState> {
       emit(SignUpFailure(errMessage: 'No changes to update.'));
     }
   }
+}
+
+class StorageService {
+  final FirebaseStorage _storage = FirebaseStorage.instance;
+
+  Future<String?> uploadImageToStorage(String userId, XFile imageFile) async {
+    try {
+      Reference storageRef = _storage.ref().child('user_images/$userId.jpg');
+      UploadTask uploadTask = storageRef.putFile(File(imageFile.path));
+      TaskSnapshot taskSnapshot = await uploadTask;
+      return await taskSnapshot.ref.getDownloadURL();
+    } catch (e) {
+      log("Error uploading image: $e");
+      return null;
+    }
+  }
+}
+
 
 //   Future<void> fetchUserData(String collectionName) async {
 //     try {
@@ -200,20 +173,12 @@ class SignUpCubit extends Cubit<SignUpState> {
 //       emit(SignUpFailure(errMessage: error.toString()));
 //     }
 //   }
-}
 
-class StorageService {
-  final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  Future<String?> uploadImageToStorage(String userId, XFile imageFile) async {
-    try {
-      Reference storageRef = _storage.ref().child('user_images/$userId.jpg');
-      UploadTask uploadTask = storageRef.putFile(File(imageFile.path));
-      TaskSnapshot taskSnapshot = await uploadTask;
-      return await taskSnapshot.ref.getDownloadURL();
-    } catch (e) {
-      log("Error uploading image: $e");
-      return null;
-    }
-  }
-}
+// Future<String> _uploadImageToStorage(String uid, XFile imageFile) async {
+//   final storageRef =
+//       FirebaseStorage.instance.ref().child('userImages/$uid.jpg');
+//   final uploadTask = storageRef.putFile(File(imageFile.path));
+//   final snapshot = await uploadTask;
+//   return await snapshot.ref.getDownloadURL();
+// }

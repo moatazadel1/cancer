@@ -5,12 +5,12 @@ import 'package:breast_cancer/features/authentication/model/user_model.dart';
 import 'package:breast_cancer/features/profile/presentation/view_model/language_provider.dart';
 import 'package:breast_cancer/features/profile/presentation/views/widgets/custom_profile_container.dart';
 import 'package:breast_cancer/features/profile/presentation/views/widgets/custom_profile_item.dart';
+import 'package:breast_cancer/features/profile/presentation/views/widgets/pdf_view.dart';
 import 'package:breast_cancer/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
 import '../../view_model/pdf_provider.dart';
 
 class ProfileViewBody extends StatefulWidget {
@@ -197,24 +197,35 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                     title: S.of(context).Editprofile,
                     leading: Image.asset(AppAssets.edit2Img),
                   ),
-                  CustomProfileItem(
-                    onTap: () {
-                      GoRouter.of(context).push(AppRoutes.kDoctorAccessView);
-                    },
-                    title: "Doctor access",
-                    leading: const Icon(Icons.send),
-                  ),
+                  widget.userType == 'patient' ?
                   CustomProfileItem(
                     onTap: () {
                       final pdfPath = context.read<PdfState>().pdfPath;
+                      GoRouter.of(context).push(AppRoutes.kDoctorAccessView, extra: pdfPath);
+                    },
+                    title: "Doctor access",
+                    leading: const Icon(Icons.send),
+                  ) : CustomProfileItem(
+                    onTap: () {
+                      final pdfPath = context.read<PdfState>().pdfPath;
+                      GoRouter.of(context).push(AppRoutes.kPatientAccessView , extra: pdfPath);
+                    },
+                    title: "Patient access",
+                    leading: const Icon(Icons.send),
+                  ),
+                  widget.userType == 'patient' ?
+                  CustomProfileItem(
+                    onTap: () {
+                      final pdfPath = context.read<PdfState>().pdfPath;
+                      final patientId = userModel?.userId ?? "";  // Ensure you have the patientId
                       GoRouter.of(context).push(
                         AppRoutes.kPdfView,
-                        extra: pdfPath,
+                        extra: PdfViewArguments(pdfPath ?? '', patientId),
                       );
                     },
-                    title: "Pdf",
-                    leading: const Icon(Icons.picture_as_pdf),
-                  ),
+                    title: "Information about the disease",
+                    leading:  Image.asset(AppAssets.medicalinpatientImg),
+                  ) : Container(),
                   CustomProfileItem(
                     onTap: () {
                       GoRouter.of(context).push(AppRoutes.kNotificationView);
