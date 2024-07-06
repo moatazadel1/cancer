@@ -48,6 +48,7 @@ class _HomeViewBodyState extends State<HomeViewBody>
     } catch (error) {
       if (!mounted) return;
       await AppMethods.showErrorORWarningDialog(
+        img : AppAssets.warningImg,
         context: context,
         subtitle: "$error",
         fct: () {},

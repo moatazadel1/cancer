@@ -47,6 +47,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
     } catch (error) {
       if (!mounted) return;
       await AppMethods.showErrorORWarningDialog(
+        img : AppAssets.warningImg,
+
         context: context,
         subtitle: "$error",
         fct: () {},
@@ -88,17 +90,9 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                   height: kToolbarHeight + 32,
                   left: 25,
                   right: 25,
-                  // left: 20,
+
                   child: Row(
                     children: [
-                      // const Icon(
-                      //   Icons.arrow_back_ios,
-                      //   size: 18,
-                      //   color: Colors.white,
-                      // ),
-                      // const SizedBox(
-                      //   width: 5,
-                      // ),
                       Text(
                         S.of(context).Profile,
                         style: const TextStyle(
@@ -167,7 +161,6 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
             ),
             Text(
               '${userModel?.userEmail} | ${userModel?.contactNumber}',
-              // 'youremail@domain.com | +01 234 567 89',
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.black,
@@ -220,7 +213,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                       final patientId = userModel?.userId ?? "";  // Ensure you have the patientId
                       GoRouter.of(context).push(
                         AppRoutes.kPdfView,
-                        extra: PdfViewArguments(pdfPath ?? '', patientId),
+                        extra: PdfViewArguments(pdfPath ?? '', patientId,widget.userType),
                       );
                     },
                     title: "Information about the disease",

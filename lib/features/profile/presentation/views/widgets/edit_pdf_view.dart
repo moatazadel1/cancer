@@ -9,7 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class EditPdfScreen extends StatefulWidget {
   final String patientId;
 
-  const EditPdfScreen({Key? key, required this.patientId}) : super(key: key);
+  const EditPdfScreen({super.key, required this.patientId});
 
   @override
   _EditPdfScreenState createState() => _EditPdfScreenState();
@@ -77,7 +77,7 @@ class _EditPdfScreenState extends State<EditPdfScreen> {
                 style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
             pw.SizedBox(height: 10),
             pw.Text(patientData['safetyStatus'] ?? '',
-                style: pw.TextStyle(fontSize: 16, color: PdfColors.green)),
+                style: const pw.TextStyle(fontSize: 16, color: PdfColors.green)),
             pw.SizedBox(height: 10),
             ...?patientData['details']?.map((detail) => pw.Bullet(text: detail)).toList(),
             pw.SizedBox(height: 20),
@@ -112,33 +112,33 @@ class _EditPdfScreenState extends State<EditPdfScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Edit PDF')),
+      appBar: AppBar(title: const Text('Edit PDF')),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Text('Patient: ${patientData['userName']}'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text('Title: ${patientData['title']}'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text('Safety Status: ${patientData['safetyStatus']}'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text('Details: ${patientData['details']?.join(", ")}'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text('Percentage: ${patientData['percentage']}'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 controller: _additionalNotesController,
-                decoration: InputDecoration(labelText: 'Additional Notes'),
+                decoration: const InputDecoration(labelText: 'Additional Notes'),
                 maxLines: 5,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _updatePdf,
-                child: Text('Update PDF'),
+                child: const Text('Update PDF'),
               ),
             ],
           ),

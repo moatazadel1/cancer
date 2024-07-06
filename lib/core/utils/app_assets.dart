@@ -29,5 +29,6 @@ class AppAssets {
   static const String joinAsImg = 'assets/images/joinAs.png';
   static const String personImg = 'assets/images/person.png';
   static const String medicalinpatientImg = 'assets/images/medicalinpatient.png';
+  static const String successfulImg = 'assets/images/successful.png';
 
 }

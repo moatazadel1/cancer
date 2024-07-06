@@ -5,10 +5,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../../../../../core/utils/app_methods.dart';
+
 class DoctorAccessView extends StatelessWidget {
   final String pdfPath;
 
-  const DoctorAccessView({Key? key, required this.pdfPath}) : super(key: key);
+  const DoctorAccessView({super.key, required this.pdfPath});
 
   Future<void> sendPdfToDoctor(String doctorId) async {
     try {
@@ -38,15 +40,17 @@ class DoctorAccessView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(
-        'Doctors',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 22,
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w600,
+      appBar: AppBar(
+        title: const Text(
+          'Doctors',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 22,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+          ),
         ),
-      )),
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('doctors').snapshots(),
         builder: (context, snapshot) {
@@ -61,12 +65,23 @@ class DoctorAccessView extends StatelessWidget {
             itemCount: doctors.length,
             itemBuilder: (context, index) {
               final doctor = doctors[index];
-              return DoctorsItem(name:doctor['userName'], onTap: () => sendPdfToDoctor(doctor.id), );
-              //   ListTile(
-              //   title: Text(doctor['userName']),
-              //   subtitle: Text(doctor['userEmail']),
-              //   onTap: () => sendPdfToDoctor(doctor.id),
-              // );
+              return DoctorsItem(
+                name: doctor['userName'],
+                onTap: () async {
+                  bool confirmed = await AppMethods.showConfirmationDialog(
+                    context: context,
+                    subtitle: 'Confirm send your information?',
+                    img: AppAssets.successfulImg,
+                    isError: false,
+                    fct: () async {
+                      Navigator.of(context).pop(true);
+                    },
+                  );
+                  if (confirmed) {
+                    await sendPdfToDoctor(doctor.id);
+                  }
+                },
+              );
             },
           );
         },
@@ -74,6 +89,7 @@ class DoctorAccessView extends StatelessWidget {
     );
   }
 }
+
 class DoctorsItem extends StatelessWidget {
   final void Function()? onTap;
   final String name;

@@ -127,6 +127,7 @@ abstract class AppRoutes {
             final args = state.extra as PdfViewArguments;
 
             return  PdfView(
+              userType: args.userType,
               patientId: args.patientId,
               pdfPath: args.pdfPath,
             );

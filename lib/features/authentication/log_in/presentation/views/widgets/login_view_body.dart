@@ -59,7 +59,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   Future<void> _resetPassword() async {
     if (_emailController.text.isEmpty) {
       AppMethods.showErrorORWarningDialog(
-        context: context,
+        context: context,        img : AppAssets.warningImg,
+
         subtitle: S.of(context).resetYourPass,
         fct: () {},
       );
@@ -76,6 +77,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       );
     } catch (e) {
       AppMethods.showErrorORWarningDialog(
+        img : AppAssets.warningImg,
+
         context: context,
         subtitle: "${S.of(context).errorResetEmail} ${e.toString()}",
         fct: () {},
@@ -100,6 +103,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       GoRouter.of(context).push(AppRoutes.kRootView);
     } catch (e) {
       AppMethods.showErrorORWarningDialog(
+        img : AppAssets.warningImg,
+
         context: context,
         subtitle: S.of(context).googlesigninfailed,
         fct: () {},
@@ -119,6 +124,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       } else {
         if (!mounted) return;
         AppMethods.showErrorORWarningDialog(
+          img : AppAssets.warningImg,
+
           context: context,
           subtitle: S.of(context).Facebooksigninfailed,
           fct: () {},
@@ -126,6 +133,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       }
     } catch (e) {
       AppMethods.showErrorORWarningDialog(
+        img : AppAssets.warningImg,
+
         context: context,
         subtitle: S.of(context).Facebooksigninfailed,
         fct: () {},
@@ -154,6 +163,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         if (!mounted) return;
 
         AppMethods.showErrorORWarningDialog(
+          img : AppAssets.warningImg,
+
           context: context,
           subtitle: S.of(context).twitterfail,
           fct: () {},
@@ -161,6 +172,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       }
     } catch (e) {
       AppMethods.showErrorORWarningDialog(
+        img : AppAssets.warningImg,
+
         context: context,
         subtitle: S.of(context).twitterfail,
         fct: () {},
@@ -178,6 +191,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           _isLoading = false;
         } else if (state is LogInFailure) {
           AppMethods.showErrorORWarningDialog(
+            img : AppAssets.warningImg,
+
             context: context,
             subtitle: "${S.of(context).error1} ${state.errMessage}",
             fct: () {},

@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../core/utils/app_assets.dart';
+
 class SignUpViewBody extends StatefulWidget {
   final String userType;
 
@@ -79,6 +81,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           _isLoading = false;
         } else if (state is SignUpFailure) {
           AppMethods.showErrorORWarningDialog(
+            img : AppAssets.warningImg,
+
             context: context,
             subtitle: "${S.of(context).error1} ${state.errMessage}",
             fct: () {},

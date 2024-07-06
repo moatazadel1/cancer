@@ -47,6 +47,8 @@ class _ResultViewBodyState extends State<ResultViewBody> {
     } catch (error) {
       if (!mounted) return;
       await AppMethods.showErrorORWarningDialog(
+        img : AppAssets.warningImg,
+
         context: context,
         subtitle: "$error",
         fct: () {},

@@ -9,6 +9,7 @@ class AppMethods {
     required BuildContext context,
     required String subtitle,
     required Function fct,
+    required String img,
     bool isError = true,
   }) async {
     await showDialog(
@@ -25,7 +26,7 @@ class AppMethods {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  AppAssets.warningImg,
+                  img,
                   height: 60,
                   width: 60,
                 ),
@@ -128,4 +129,66 @@ class AppMethods {
           );
         });
   }
+
+  static Future<bool> showConfirmationDialog({
+    required BuildContext context,
+    required String subtitle,
+    required Function fct,
+    required String img,
+    bool isError = true,
+  }) async {
+    bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                img,
+                height: 60,
+                width: 60,
+              ),
+              const SizedBox(height: 16.0),
+              SubtitleTextWidget(
+                label: subtitle,
+                fontWeight: FontWeight.w600,
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Visibility(
+                    visible: !isError,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(false);
+                      },
+                      child: SubtitleTextWidget(
+                          label: S.of(context).CANCEL, color: Colors.blue),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      fct();
+                    },
+                    child: SubtitleTextWidget(
+                        label: S.of(context).Ok, color: Colors.red),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+    return confirmed ?? false;
+  }
+
 }

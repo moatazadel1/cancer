@@ -1,38 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:go_router/go_router.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_routes.dart';
 
 class PatientAccessView extends StatelessWidget {
+  const PatientAccessView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Select a Patient')),
+      appBar: AppBar(title: const Text('Select a Patient')),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('patients').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
-
           final patients = snapshot.data!.docs;
-
           return ListView.builder(
             itemCount: patients.length,
             itemBuilder: (context, index) {
               final patient = patients[index];
-              return ListTile(
-                title: Text(patient['userName']),
-                subtitle: Text(patient['userEmail']),
-                onTap: () {
-                  // final patientData = patient.data() as Map<String, dynamic>;
-                  GoRouter.of(context).push(
-                    AppRoutes.kEditPdfView,
-                    extra: patient.id,
-                  );
-                },
-              );
+              return PatientsItem(name: patient['userName'], onTap: (){
+                GoRouter.of(context).push(
+                  AppRoutes.kEditPdfView,
+                  extra: patient.id,
+                );
+              });
+              //   ListTile(
+              //   title: Text(patient['userName']),
+              //   subtitle: Text(patient['userEmail']),
+              //   onTap: () {
+              //     // final patientData = patient.data() as Map<String, dynamic>;
+              //     GoRouter.of(context).push(
+              //       AppRoutes.kEditPdfView,
+              //       extra: patient.id,
+              //     );
+              //   },
+              // );
             },
           );
         },
@@ -40,3 +46,47 @@ class PatientAccessView extends StatelessWidget {
     );
   }
 }
+
+class PatientsItem extends StatelessWidget {
+  final void Function()? onTap;
+  final String name;
+  const PatientsItem({super.key, required this.name, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          const  SizedBox(
+            height: 30,
+          ),
+          SizedBox(
+            height: 45,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Row(
+                children: [
+                  Image.asset(AppAssets.personImg),
+                  const SizedBox(width: 28),
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontFamily: 'Open Sans',
+                      fontWeight: FontWeight.w400,
+                      height: 1.2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
