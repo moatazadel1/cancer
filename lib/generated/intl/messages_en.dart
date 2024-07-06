@@ -22,9 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AdditionalNotes":
+            MessageLookupByLibrary.simpleMessage("Additional Notes"),
+        "AdditionalNotesss":
+            MessageLookupByLibrary.simpleMessage("Additional Notes:"),
         "Address": MessageLookupByLibrary.simpleMessage("Address"),
         "Alreadyhaveanaccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "Aninformationhasbeensent": MessageLookupByLibrary.simpleMessage(
+            "An information has been sent"),
         "Appupdates": MessageLookupByLibrary.simpleMessage("App updates"),
         "Arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "Atveroeos": MessageLookupByLibrary.simpleMessage(
@@ -33,10 +39,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "BreastCancer": MessageLookupByLibrary.simpleMessage("Breast Cancer"),
         "CANCEL": MessageLookupByLibrary.simpleMessage("CANCEL"),
         "Common": MessageLookupByLibrary.simpleMessage("Common"),
+        "Confirmsendyourinformation": MessageLookupByLibrary.simpleMessage(
+            "Confirm send your information?"),
         "Contactus": MessageLookupByLibrary.simpleMessage("Contact us"),
         "Country": MessageLookupByLibrary.simpleMessage("Country"),
         "Countrynamecannotbeempty": MessageLookupByLibrary.simpleMessage(
             "Country name cannot be empty"),
+        "DOCTOR": MessageLookupByLibrary.simpleMessage("DOCTOR"),
         "Disclosureofyourpersonaldata": MessageLookupByLibrary.simpleMessage(
             "3. Disclosure of your personal data"),
         "DiscountAvaiable":
@@ -51,6 +60,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Displaynamemustbebetween3and20characters":
             MessageLookupByLibrary.simpleMessage(
                 "Display name must be between 3 and 20 characters"),
+        "DoctorNotes": MessageLookupByLibrary.simpleMessage("Doctor Notes:"),
+        "Doctoraccess": MessageLookupByLibrary.simpleMessage("Doctor access"),
+        "Doctors": MessageLookupByLibrary.simpleMessage("Doctors"),
         "Editprofile": MessageLookupByLibrary.simpleMessage("Edit profile"),
         "Emailaddress": MessageLookupByLibrary.simpleMessage("Email address"),
         "EnglishUK": MessageLookupByLibrary.simpleMessage("English (UK)"),
@@ -63,10 +75,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Your Phone Number"),
         "EnterYourUsername":
             MessageLookupByLibrary.simpleMessage("Enter Your Username"),
+        "Errorfetchingpatientdata":
+            MessageLookupByLibrary.simpleMessage("Error fetching patient data"),
         "Errorupdatingprofile":
             MessageLookupByLibrary.simpleMessage("Error updating profile"),
         "Facebooksigninfailed":
             MessageLookupByLibrary.simpleMessage("Facebook sign-in failed"),
+        "Failedtosendinformation":
+            MessageLookupByLibrary.simpleMessage("Failed to send information:"),
         "Failedtoupdateprofile":
             MessageLookupByLibrary.simpleMessage("Failed to update profile"),
         "French": MessageLookupByLibrary.simpleMessage("French"),
@@ -82,12 +98,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "Hindi": MessageLookupByLibrary.simpleMessage("Hindi"),
         "Home": MessageLookupByLibrary.simpleMessage("Home"),
         "Indonesia": MessageLookupByLibrary.simpleMessage("Indonesia"),
+        "Informationaboutthedisease": MessageLookupByLibrary.simpleMessage(
+            "Information about the disease"),
+        "Informationaboutthediseaseee": MessageLookupByLibrary.simpleMessage(
+            "Information about the disease:"),
         "Language": MessageLookupByLibrary.simpleMessage("Language"),
         "Lets": MessageLookupByLibrary.simpleMessage("Let’s get started!"),
         "Lightmode": MessageLookupByLibrary.simpleMessage("Light mode"),
         "Login": MessageLookupByLibrary.simpleMessage("Login"),
         "LoginSuccessfully":
             MessageLookupByLibrary.simpleMessage("Login Successfully"),
+        "Loginasa": MessageLookupByLibrary.simpleMessage("Log in as a :"),
         "Loremipsum": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."),
         "Mandarin": MessageLookupByLibrary.simpleMessage("Mandarin"),
@@ -96,18 +117,42 @@ class MessageLookup extends MessageLookupByLibrary {
         "NewTipsAvailable":
             MessageLookupByLibrary.simpleMessage("New Tips Available"),
         "Nickname": MessageLookupByLibrary.simpleMessage("Nick name"),
+        "NoPDFavailablePleasecreateaPDFfirst":
+            MessageLookupByLibrary.simpleMessage(
+                "No PDF available. Please create a PDF first."),
+        "Noadditionalnotes":
+            MessageLookupByLibrary.simpleMessage("No additional notes"),
+        "Noadditionalnotesfound":
+            MessageLookupByLibrary.simpleMessage("No additional notes found"),
+        "Noimagefound": MessageLookupByLibrary.simpleMessage("No image found"),
+        "Notesmustbeatleast10characterslong":
+            MessageLookupByLibrary.simpleMessage(
+                "Notes must be at least 10 characters long"),
         "Notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "Nouserfoundforthatemail": MessageLookupByLibrary.simpleMessage(
             "No user found for that email."),
         "ON": MessageLookupByLibrary.simpleMessage("ON"),
         "Ok": MessageLookupByLibrary.simpleMessage("OK"),
         "Others": MessageLookupByLibrary.simpleMessage("Others"),
+        "PATIENT": MessageLookupByLibrary.simpleMessage("PATIENT"),
+        "PDFupdatedandsenttopatient": MessageLookupByLibrary.simpleMessage(
+            "PDF updated and sent to patient"),
         "Passwordmustbeatleast6characterslong":
             MessageLookupByLibrary.simpleMessage(
                 "Password must be at least 6 characters long"),
+        "Patientaccess": MessageLookupByLibrary.simpleMessage("Patient access"),
+        "Patientdatanotfound":
+            MessageLookupByLibrary.simpleMessage("Patient data not found"),
+        "Patientinformation":
+            MessageLookupByLibrary.simpleMessage("Patient information"),
         "PaymentRequest":
             MessageLookupByLibrary.simpleMessage("Payment Request"),
         "Phonenumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "PleasecreateaPDFwithyourinformationtoaccessdoctors":
+            MessageLookupByLibrary.simpleMessage(
+                "Please create a PDF with your information to access doctors."),
+        "Pleaseenteranadditionalnotes": MessageLookupByLibrary.simpleMessage(
+            "Please enter an additional notes"),
         "Pleaseenteranemail":
             MessageLookupByLibrary.simpleMessage("Please enter an email"),
         "Pleaseenterapassword":
@@ -132,6 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Security": MessageLookupByLibrary.simpleMessage("Security"),
         "Sedutperspiciatis": MessageLookupByLibrary.simpleMessage(
             "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."),
+        "SelectaPatient":
+            MessageLookupByLibrary.simpleMessage("Select a Patient"),
         "Sound": MessageLookupByLibrary.simpleMessage("Sound"),
         "Spanish": MessageLookupByLibrary.simpleMessage("Spanish"),
         "Suggested": MessageLookupByLibrary.simpleMessage("Suggested"),
@@ -141,6 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "Typesdatawecollect":
             MessageLookupByLibrary.simpleMessage("1. Types data we collect"),
+        "Updateinformation":
+            MessageLookupByLibrary.simpleMessage("Update information"),
         "Upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "Useofyourpersonaldata": MessageLookupByLibrary.simpleMessage(
             "2. Use of your personal data"),
@@ -149,6 +198,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wrongpasswordprovidedforthatuser":
             MessageLookupByLibrary.simpleMessage(
                 "Wrong password provided for that user."),
+        "XRay": MessageLookupByLibrary.simpleMessage("X-Ray:"),
+        "XrayResult": MessageLookupByLibrary.simpleMessage("X-ray Result"),
         "contactNumbermustbe11characterslong":
             MessageLookupByLibrary.simpleMessage(
                 "contactNumber must be 11 characters long"),
@@ -183,6 +234,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUpDetails":
             MessageLookupByLibrary.simpleMessage("Sign Up Details"),
         "twitterfail":
-            MessageLookupByLibrary.simpleMessage("Twitter sign-in failed")
+            MessageLookupByLibrary.simpleMessage("Twitter sign-in failed"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome!")
       };
 }

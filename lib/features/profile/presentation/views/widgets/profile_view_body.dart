@@ -47,8 +47,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
     } catch (error) {
       if (!mounted) return;
       await AppMethods.showErrorORWarningDialog(
-        img : AppAssets.warningImg,
-
+        img: AppAssets.warningImg,
         context: context,
         subtitle: "$error",
         fct: () {},
@@ -90,7 +89,6 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                   height: kToolbarHeight + 32,
                   left: 25,
                   right: 25,
-
                   child: Row(
                     children: [
                       Text(
@@ -190,35 +188,43 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                     title: S.of(context).Editprofile,
                     leading: Image.asset(AppAssets.edit2Img),
                   ),
-                  widget.userType == 'patient' ?
-                  CustomProfileItem(
-                    onTap: () {
-                      final pdfPath = context.read<PdfState>().pdfPath;
-                      GoRouter.of(context).push(AppRoutes.kDoctorAccessView, extra: pdfPath);
-                    },
-                    title: "Doctor access",
-                    leading: const Icon(Icons.send),
-                  ) : CustomProfileItem(
-                    onTap: () {
-                      final pdfPath = context.read<PdfState>().pdfPath;
-                      GoRouter.of(context).push(AppRoutes.kPatientAccessView , extra: pdfPath);
-                    },
-                    title: "Patient access",
-                    leading: const Icon(Icons.send),
-                  ),
-                  widget.userType == 'patient' ?
-                  CustomProfileItem(
-                    onTap: () {
-                      final pdfPath = context.read<PdfState>().pdfPath;
-                      final patientId = userModel?.userId ?? "";  // Ensure you have the patientId
-                      GoRouter.of(context).push(
-                        AppRoutes.kPdfView,
-                        extra: PdfViewArguments(pdfPath ?? '', patientId,widget.userType),
-                      );
-                    },
-                    title: "Information about the disease",
-                    leading:  Image.asset(AppAssets.medicalinpatientImg),
-                  ) : Container(),
+                  widget.userType == 'patient'
+                      ? CustomProfileItem(
+                          onTap: () {
+                            final pdfPath = context.read<PdfState>().pdfPath;
+                            GoRouter.of(context).push(
+                                AppRoutes.kDoctorAccessView,
+                                extra: pdfPath);
+                          },
+                          title: S.of(context).Doctoraccess,
+                          leading: const Icon(Icons.send),
+                        )
+                      : CustomProfileItem(
+                          onTap: () {
+                            final pdfPath = context.read<PdfState>().pdfPath;
+                            GoRouter.of(context).push(
+                                AppRoutes.kPatientAccessView,
+                                extra: pdfPath);
+                          },
+                          title: S.of(context).Patientaccess,
+                          leading: const Icon(Icons.send),
+                        ),
+                  widget.userType == 'patient'
+                      ? CustomProfileItem(
+                          onTap: () {
+                            final pdfPath = context.read<PdfState>().pdfPath;
+                            final patientId = userModel?.userId ??
+                                ""; // Ensure you have the patientId
+                            GoRouter.of(context).push(
+                              AppRoutes.kPdfView,
+                              extra: PdfViewArguments(
+                                  pdfPath ?? '', patientId, widget.userType),
+                            );
+                          },
+                          title: S.of(context).Informationaboutthedisease,
+                          leading: Image.asset(AppAssets.medicalinpatientImg),
+                        )
+                      : Container(),
                   CustomProfileItem(
                     onTap: () {
                       GoRouter.of(context).push(AppRoutes.kNotificationView);

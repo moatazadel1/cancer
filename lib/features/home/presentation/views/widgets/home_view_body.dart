@@ -60,32 +60,6 @@ class _HomeViewBodyState extends State<HomeViewBody>
     }
   }
 
-  // Future<void> localImagePicker() async {
-  //   final ImagePicker picker = ImagePicker();
-  //   await AppMethods.imagePickerDialog(
-  //     context: context,
-  //     cameraFCT: () async {
-  //       _pickedImage = await picker.pickImage(source: ImageSource.camera);
-  //       if (_pickedImage != null) {
-  //         await uploadImage(_pickedImage!);
-  //         navigateToResultView();
-  //       }
-  //     },
-  //     galleryFCT: () async {
-  //       _pickedImage = await picker.pickImage(source: ImageSource.gallery);
-  //       if (_pickedImage != null) {
-  //         await uploadImage(_pickedImage!);
-  //         navigateToResultView();
-  //       }
-  //     },
-  //     removeFCT: () {
-  //       setState(() {
-  //         _pickedImage = null;
-  //       });
-  //     },
-  //   );
-  // }
-
   Future<void> uploadImage(XFile image) async {
     setState(() {
       _isLoading = true;
@@ -95,6 +69,7 @@ class _HomeViewBodyState extends State<HomeViewBody>
       'POST',
       Uri.parse('http://10.0.2.2:5000/predict'), // Use 10.0.2.2 for emulator
     );
+    //     static const String emulatorUrl = 'http://10.0.2.2:5000/predict';
     request.files.add(await http.MultipartFile.fromPath('file', image.path));
 
     try {

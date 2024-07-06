@@ -14,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   // final String? hintText;
   final EdgeInsetsGeometry? contentPadding;
   final Color? fillColor;
+ final int? maxLines;
 
   const CustomTextField({
     super.key,
@@ -28,12 +29,13 @@ class CustomTextField extends StatelessWidget {
     this.onFieldSubmitted,
     this.labelText,
     this.contentPadding,
-    this.fillColor = Colors.white12,
+    this.fillColor = Colors.white12, this.maxLines =1,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       controller: controller,
       focusNode: focusNode,
       obscureText: obscureText ?? false,

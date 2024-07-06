@@ -60,6 +60,256 @@ class S {
     );
   }
 
+  /// `Welcome!`
+  String get welcome {
+    return Intl.message(
+      'Welcome!',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in as a :`
+  String get Loginasa {
+    return Intl.message(
+      'Log in as a :',
+      name: 'Loginasa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Patient data not found`
+  String get Patientdatanotfound {
+    return Intl.message(
+      'Patient data not found',
+      name: 'Patientdatanotfound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error fetching patient data`
+  String get Errorfetchingpatientdata {
+    return Intl.message(
+      'Error fetching patient data',
+      name: 'Errorfetchingpatientdata',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PDF updated and sent to patient`
+  String get PDFupdatedandsenttopatient {
+    return Intl.message(
+      'PDF updated and sent to patient',
+      name: 'PDFupdatedandsenttopatient',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Patient information`
+  String get Patientinformation {
+    return Intl.message(
+      'Patient information',
+      name: 'Patientinformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Information about the disease:`
+  String get Informationaboutthediseaseee {
+    return Intl.message(
+      'Information about the disease:',
+      name: 'Informationaboutthediseaseee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `X-Ray:`
+  String get XRay {
+    return Intl.message(
+      'X-Ray:',
+      name: 'XRay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Notes:`
+  String get AdditionalNotesss {
+    return Intl.message(
+      'Additional Notes:',
+      name: 'AdditionalNotesss',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Notes`
+  String get AdditionalNotes {
+    return Intl.message(
+      'Additional Notes',
+      name: 'AdditionalNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter an additional notes`
+  String get Pleaseenteranadditionalnotes {
+    return Intl.message(
+      'Please enter an additional notes',
+      name: 'Pleaseenteranadditionalnotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notes must be at least 10 characters long`
+  String get Notesmustbeatleast10characterslong {
+    return Intl.message(
+      'Notes must be at least 10 characters long',
+      name: 'Notesmustbeatleast10characterslong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update information`
+  String get Updateinformation {
+    return Intl.message(
+      'Update information',
+      name: 'Updateinformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DOCTOR`
+  String get DOCTOR {
+    return Intl.message(
+      'DOCTOR',
+      name: 'DOCTOR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select a Patient`
+  String get SelectaPatient {
+    return Intl.message(
+      'Select a Patient',
+      name: 'SelectaPatient',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An information has been sent`
+  String get Aninformationhasbeensent {
+    return Intl.message(
+      'An information has been sent',
+      name: 'Aninformationhasbeensent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to send information:`
+  String get Failedtosendinformation {
+    return Intl.message(
+      'Failed to send information:',
+      name: 'Failedtosendinformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please create a PDF with your information to access doctors.`
+  String get PleasecreateaPDFwithyourinformationtoaccessdoctors {
+    return Intl.message(
+      'Please create a PDF with your information to access doctors.',
+      name: 'PleasecreateaPDFwithyourinformationtoaccessdoctors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doctors`
+  String get Doctors {
+    return Intl.message(
+      'Doctors',
+      name: 'Doctors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No PDF available. Please create a PDF first.`
+  String get NoPDFavailablePleasecreateaPDFfirst {
+    return Intl.message(
+      'No PDF available. Please create a PDF first.',
+      name: 'NoPDFavailablePleasecreateaPDFfirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm send your information?`
+  String get Confirmsendyourinformation {
+    return Intl.message(
+      'Confirm send your information?',
+      name: 'Confirmsendyourinformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PATIENT`
+  String get PATIENT {
+    return Intl.message(
+      'PATIENT',
+      name: 'PATIENT',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doctor access`
+  String get Doctoraccess {
+    return Intl.message(
+      'Doctor access',
+      name: 'Doctoraccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Patient access`
+  String get Patientaccess {
+    return Intl.message(
+      'Patient access',
+      name: 'Patientaccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Information about the disease`
+  String get Informationaboutthedisease {
+    return Intl.message(
+      'Information about the disease',
+      name: 'Informationaboutthedisease',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Breast Cancer`
   String get BreastCancer {
     return Intl.message(
@@ -70,11 +320,61 @@ class S {
     );
   }
 
+  /// `No image found`
+  String get Noimagefound {
+    return Intl.message(
+      'No image found',
+      name: 'Noimagefound',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `login to enjoy the features we’ve\nprovided, and stay healthy!`
   String get enjoy {
     return Intl.message(
       'login to enjoy the features we’ve\nprovided, and stay healthy!',
       name: 'enjoy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No additional notes found`
+  String get Noadditionalnotesfound {
+    return Intl.message(
+      'No additional notes found',
+      name: 'Noadditionalnotesfound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No additional notes`
+  String get Noadditionalnotes {
+    return Intl.message(
+      'No additional notes',
+      name: 'Noadditionalnotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doctor Notes:`
+  String get DoctorNotes {
+    return Intl.message(
+      'Doctor Notes:',
+      name: 'DoctorNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `X-ray Result`
+  String get XrayResult {
+    return Intl.message(
+      'X-ray Result',
+      name: 'XrayResult',
       desc: '',
       args: [],
     );

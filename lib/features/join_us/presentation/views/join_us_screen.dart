@@ -2,6 +2,7 @@ import 'package:breast_cancer/core/utils/app_assets.dart';
 import 'package:breast_cancer/core/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../generated/l10n.dart';
 import 'widgets/custom_join_as_container.dart';
 
 class JoinAsScreen extends StatelessWidget {
@@ -15,17 +16,16 @@ class JoinAsScreen extends StatelessWidget {
           padding: const EdgeInsets.only(right: 20, left: 20),
           child: SingleChildScrollView(
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
                   height: 79,
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 182,
                   child: Text(
-                    'Welcome!',
+                    S.of(context).welcome,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 32,
                       fontFamily: 'Poppins',
@@ -34,19 +34,24 @@ class JoinAsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 12,),
-                Image.asset(AppAssets.joinAsImg,height: MediaQuery.sizeOf(context).height * 0.4,),
+                const SizedBox(
+                  height: 12,
+                ),
+                Image.asset(
+                  AppAssets.joinAsImg,
+                  height: MediaQuery.sizeOf(context).height * 0.4,
+                ),
                 const SizedBox(
                   height: 55,
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 25),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    // alignment: Alignment.centerLeft,
                     child: Text(
-                      'Log in as a :',
+                      S.of(context).Loginasa,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 25,
                         fontFamily: 'Poppins',
@@ -64,18 +69,18 @@ class JoinAsScreen extends StatelessWidget {
                     GoRouter.of(context)
                         .push(AppRoutes.kLoginView, extra: 'patient');
                   },
-                  child: const CustomJoinAsContainer(
+                  child: CustomJoinAsContainer(
                       textName: Text(
-                        'PATIENT',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                          height: 0,
-                        ),
-                      )),
+                    S.of(context).PATIENT,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  )),
                 ),
                 const SizedBox(
                   height: 47,
@@ -85,18 +90,18 @@ class JoinAsScreen extends StatelessWidget {
                     GoRouter.of(context)
                         .push(AppRoutes.kLoginView, extra: 'doctor');
                   },
-                  child: const CustomJoinAsContainer(
+                  child: CustomJoinAsContainer(
                       textName: Text(
-                        'DOCTOR',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                          height: 0,
-                        ),
-                      )),
+                    S.of(context).DOCTOR,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  )),
                 ),
               ],
             ),

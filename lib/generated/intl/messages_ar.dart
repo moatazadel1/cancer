@@ -22,9 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AdditionalNotes":
+            MessageLookupByLibrary.simpleMessage("ملاحظات إضافية"),
+        "AdditionalNotesss":
+            MessageLookupByLibrary.simpleMessage("ملاحظات إضافية:"),
         "Address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "Alreadyhaveanaccount":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
+        "Aninformationhasbeensent":
+            MessageLookupByLibrary.simpleMessage("تم إرسال المعلومات"),
         "Appupdates": MessageLookupByLibrary.simpleMessage("تحديثات التطبيق"),
         "Arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "Atveroeos": MessageLookupByLibrary.simpleMessage(
@@ -33,10 +39,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "BreastCancer": MessageLookupByLibrary.simpleMessage("سرطان الثدي"),
         "CANCEL": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "Common": MessageLookupByLibrary.simpleMessage("عام"),
+        "Confirmsendyourinformation": MessageLookupByLibrary.simpleMessage(
+            "تأكيد إرسال المعلومات الخاصة بك؟"),
         "Contactus": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "Country": MessageLookupByLibrary.simpleMessage("البلد"),
         "Countrynamecannotbeempty": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يكون اسم البلد فارغًا"),
+        "DOCTOR": MessageLookupByLibrary.simpleMessage("دكتور"),
         "Disclosureofyourpersonaldata":
             MessageLookupByLibrary.simpleMessage("3. الكشف عن بياناتك الشخصية"),
         "DiscountAvaiable": MessageLookupByLibrary.simpleMessage("الخصم متاح"),
@@ -50,6 +59,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Displaynamemustbebetween3and20characters":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن يتراوح الاسم المعروض بين 3 و 20 حرفًا"),
+        "DoctorNotes": MessageLookupByLibrary.simpleMessage("ملاحظات الطبيب:"),
+        "Doctoraccess":
+            MessageLookupByLibrary.simpleMessage("إمكانية الوصول للطبيب"),
+        "Doctors": MessageLookupByLibrary.simpleMessage("الأطباء"),
         "Editprofile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "Emailaddress":
@@ -66,10 +79,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
         "EnterYourUsername":
             MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم الخاص بك"),
+        "Errorfetchingpatientdata": MessageLookupByLibrary.simpleMessage(
+            "حدث خطأ أثناء جلب بيانات المريض"),
         "Errorupdatingprofile":
             MessageLookupByLibrary.simpleMessage("خطأ في تحديث الملف الشخصي"),
         "Facebooksigninfailed": MessageLookupByLibrary.simpleMessage(
             "فشل تسجيل الدخول إلي فيس بوك"),
+        "Failedtosendinformation":
+            MessageLookupByLibrary.simpleMessage("فشل في إرسال المعلومات:"),
         "Failedtoupdateprofile":
             MessageLookupByLibrary.simpleMessage("فشل في تحديث الملف الشخصي"),
         "French": MessageLookupByLibrary.simpleMessage("الفرنسية"),
@@ -85,12 +102,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "Hindi": MessageLookupByLibrary.simpleMessage("الهندية"),
         "Home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "Indonesia": MessageLookupByLibrary.simpleMessage("الإندونيسية"),
+        "Informationaboutthedisease":
+            MessageLookupByLibrary.simpleMessage("معلومات عن المرض"),
+        "Informationaboutthediseaseee":
+            MessageLookupByLibrary.simpleMessage("معلومات عن المرض:"),
         "Language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "Lets": MessageLookupByLibrary.simpleMessage("لنبدأ!"),
         "Lightmode": MessageLookupByLibrary.simpleMessage("الوضع الفاتح"),
         "Login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "LoginSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
+        "Loginasa":
+            MessageLookupByLibrary.simpleMessage("قم بتسجيل الدخول كـ :"),
         "Loremipsum": MessageLookupByLibrary.simpleMessage(
             "لوريم إيبسوم هو نص تجريبي يتم استخدامه في مجال الطباعة والنشر، حيث يستخدم كبديل مؤقت للنص الأصلي لتجربة التصاميم والخطوط والتنسيقات.\n\nلمنع إضاعة الوقت في الكتابة عند العمل على تصاميمهم، يستخدم المصممون هذا النص الذي يتم إنشاؤه تلقائيًا ويعتبر قياسيًا منذ القرن الخامس عشر."),
         "Mandarin": MessageLookupByLibrary.simpleMessage("الماندرين"),
@@ -99,17 +122,43 @@ class MessageLookup extends MessageLookupByLibrary {
         "NewTipsAvailable":
             MessageLookupByLibrary.simpleMessage("نصائح جديدة متاحة"),
         "Nickname": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
+        "NoPDFavailablePleasecreateaPDFfirst":
+            MessageLookupByLibrary.simpleMessage(
+                "لا يوجد ملف متاح. يرجى إنشاء ملف أولاً."),
+        "Noadditionalnotes":
+            MessageLookupByLibrary.simpleMessage("لا توجد ملاحظات إضافية"),
+        "Noadditionalnotesfound": MessageLookupByLibrary.simpleMessage(
+            "لم يتم العثور على ملاحظات إضافية"),
+        "Noimagefound":
+            MessageLookupByLibrary.simpleMessage("لم يتم العثور على صورة"),
+        "Notesmustbeatleast10characterslong":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن يكون طول الملاحظات 10 أحرف على الأقل"),
         "Notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "Nouserfoundforthatemail": MessageLookupByLibrary.simpleMessage(
             "لم يتم العثور على مستخدم لهذا البريد الإلكتروني."),
         "ON": MessageLookupByLibrary.simpleMessage("تشغيل"),
         "Ok": MessageLookupByLibrary.simpleMessage("حسنًا"),
         "Others": MessageLookupByLibrary.simpleMessage("أخرى"),
+        "PATIENT": MessageLookupByLibrary.simpleMessage("مريض"),
+        "PDFupdatedandsenttopatient": MessageLookupByLibrary.simpleMessage(
+            "تم تحديث الملف وإرساله إلى المريض"),
         "Passwordmustbeatleast6characterslong":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل"),
+        "Patientaccess":
+            MessageLookupByLibrary.simpleMessage("إمكانية الوصول للمريض"),
+        "Patientdatanotfound": MessageLookupByLibrary.simpleMessage(
+            "لم يتم العثور على بيانات المريض"),
+        "Patientinformation":
+            MessageLookupByLibrary.simpleMessage("معلومات المريض"),
         "PaymentRequest": MessageLookupByLibrary.simpleMessage("طلب الدفع"),
         "Phonenumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "PleasecreateaPDFwithyourinformationtoaccessdoctors":
+            MessageLookupByLibrary.simpleMessage(
+                "يرجى إنشاء ملف يحتوي على معلوماتك للوصول إلى الأطباء."),
+        "Pleaseenteranadditionalnotes":
+            MessageLookupByLibrary.simpleMessage("الرجاء إدخال ملاحظات إضافية"),
         "Pleaseenteranemail":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال بريد إلكتروني"),
         "Pleaseenterapassword":
@@ -134,6 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Security": MessageLookupByLibrary.simpleMessage("الأمان"),
         "Sedutperspiciatis": MessageLookupByLibrary.simpleMessage(
             "لوريم إيبسوم هو نص تجريبي يتم استخدامه في مجال الطباعة والنشر، حيث يستخدم كبديل مؤقت للنص الأصلي لتجربة التصاميم والخطوط والتنسيقات.\n\nلمنع إضاعة الوقت في الكتابة عند العمل على تصاميمهم، يستخدم المصممون هذا النص الذي يتم إنشاؤه تلقائيًا ويعتبر قياسيًا منذ القرن الخامس عشر."),
+        "SelectaPatient": MessageLookupByLibrary.simpleMessage("اختر مريضًا"),
         "Sound": MessageLookupByLibrary.simpleMessage("الصوت"),
         "Spanish": MessageLookupByLibrary.simpleMessage("الإسبانية"),
         "Suggested": MessageLookupByLibrary.simpleMessage("مقترح"),
@@ -143,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Theme": MessageLookupByLibrary.simpleMessage("الثيم"),
         "Typesdatawecollect": MessageLookupByLibrary.simpleMessage(
             "1. أنواع البيانات التي نجمعها"),
+        "Updateinformation":
+            MessageLookupByLibrary.simpleMessage("تحديث المعلومات"),
         "Upload": MessageLookupByLibrary.simpleMessage("تحميل"),
         "Useofyourpersonaldata":
             MessageLookupByLibrary.simpleMessage("2. استخدام بياناتك الشخصية"),
@@ -151,6 +203,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wrongpasswordprovidedforthatuser":
             MessageLookupByLibrary.simpleMessage(
                 "تم إدخال كلمة مرور خاطئة لهذا المستخدم."),
+        "XRay": MessageLookupByLibrary.simpleMessage("الأشعة السينية:"),
+        "XrayResult":
+            MessageLookupByLibrary.simpleMessage("نتيجة الأشعة السينية"),
         "contactNumbermustbe11characterslong":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن يكون رقم الاتصال مكونًا من 11 حرفًا"),
@@ -186,6 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("سجل الآن"),
         "signUpDetails": MessageLookupByLibrary.simpleMessage("تفاصيل التسجيل"),
         "twitterfail":
-            MessageLookupByLibrary.simpleMessage("فشل تسجيل الدخول إلي تويتر")
+            MessageLookupByLibrary.simpleMessage("فشل تسجيل الدخول إلي تويتر"),
+        "welcome": MessageLookupByLibrary.simpleMessage("مرحبًا")
       };
 }

@@ -33,7 +33,9 @@ class _RootViewState extends State<RootView> {
         userType: widget.userType,
       ),
       const NotificationView(),
-      const LanguageView(),
+       LanguageView(
+        userType: widget.userType,
+      ),
     ];
   }
 

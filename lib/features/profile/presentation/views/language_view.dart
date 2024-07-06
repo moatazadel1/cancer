@@ -2,10 +2,12 @@ import 'package:breast_cancer/features/profile/presentation/views/widgets/langua
 import 'package:flutter/material.dart';
 
 class LanguageView extends StatelessWidget {
-  const LanguageView({super.key});
+  const LanguageView({super.key, required this.userType});
+  final String userType;
 
   @override
   Widget build(BuildContext context) {
-    return const LanguageViewBody();
+
+    return  LanguageViewBody(userType: userType,);
   }
 }

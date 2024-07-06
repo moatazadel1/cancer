@@ -1,49 +1,110 @@
 import 'package:breast_cancer/core/utils/app_assets.dart';
+import 'package:breast_cancer/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-
 import '../../../../../core/utils/app_methods.dart';
 
-class DoctorAccessView extends StatelessWidget {
+class DoctorAccessView extends StatefulWidget {
   final String pdfPath;
 
   const DoctorAccessView({super.key, required this.pdfPath});
 
+  @override
+  State<DoctorAccessView> createState() => _DoctorAccessViewState();
+}
+
+class _DoctorAccessViewState extends State<DoctorAccessView> {
   Future<void> sendPdfToDoctor(String doctorId) async {
     try {
-      final file = File(pdfPath);
-      final ref = FirebaseStorage.instance.ref().child('pdfs/$doctorId/${file.path.split('/').last}');
+      final file = File(widget.pdfPath);
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child('pdfs/$doctorId/${file.path.split('/').last}');
       await ref.putFile(file);
       final downloadUrl = await ref.getDownloadURL();
 
-      await FirebaseFirestore.instance.collection('doctors').doc(doctorId).update({
+      await FirebaseFirestore.instance
+          .collection('doctors')
+          .doc(doctorId)
+          .update({
         'pdfs': FieldValue.arrayUnion([downloadUrl]),
       });
 
       Fluttertoast.showToast(
-        msg: "An information has been sent",
+        msg: S.of(context).Aninformationhasbeensent,
         toastLength: Toast.LENGTH_SHORT,
         textColor: Colors.white,
       );
     } catch (e) {
       Fluttertoast.showToast(
-        msg: "Failed to send information: $e",
+        msg: "${S.of(context).Failedtosendinformation} $e",
         toastLength: Toast.LENGTH_SHORT,
         textColor: Colors.red,
       );
     }
   }
+  // @override
+  // void initState() {
+  //   if (widget.pdfPath!.isEmpty) {
+  //     WidgetsBinding.instance.addPostFrameCallback((_) {
+  //       AppMethods.showErrorORWarningDialog(
+  //         context: context,
+  //         subtitle: 'Please create a PDF with your information to view it.',
+  //         fct: () {
+  //           Navigator.pop(context); // Close the dialog
+  //           // Navigator.pop(context); // Go back to the previous screen
+  //           GoRouter.of(context).push(AppRoutes.kRootView);
+  //         },
+  //         img: AppAssets.warningImg,
+  //         isError: true,
+  //       );
+  //     });
+  //   }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.pdfPath.isEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        AppMethods.showErrorORWarningDialog(
+          context: context,
+          subtitle:
+              S.of(context).PleasecreateaPDFwithyourinformationtoaccessdoctors,
+          fct: () {},
+          img: AppAssets.warningImg,
+          isError: true,
+        );
+      });
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            S.of(context).Doctors,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 22,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        body: Center(
+          child: Text(
+            S.of(context).NoPDFavailablePleasecreateaPDFfirst,
+            style: const TextStyle(fontSize: 18, color: Colors.red),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Doctors',
-          style: TextStyle(
+        title: Text(
+          S.of(context).Doctors,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 22,
             fontFamily: 'Poppins',
@@ -70,7 +131,7 @@ class DoctorAccessView extends StatelessWidget {
                 onTap: () async {
                   bool confirmed = await AppMethods.showConfirmationDialog(
                     context: context,
-                    subtitle: 'Confirm send your information?',
+                    subtitle: S.of(context).Confirmsendyourinformation,
                     img: AppAssets.successfulImg,
                     isError: false,
                     fct: () async {
@@ -101,7 +162,7 @@ class DoctorsItem extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
-        const  SizedBox(
+          const SizedBox(
             height: 30,
           ),
           SizedBox(
@@ -132,5 +193,3 @@ class DoctorsItem extends StatelessWidget {
     );
   }
 }
-
-

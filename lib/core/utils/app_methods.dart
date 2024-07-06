@@ -1,4 +1,3 @@
-import 'package:breast_cancer/core/utils/app_assets.dart';
 import 'package:breast_cancer/core/utils/subtitle_text_widget.dart';
 import 'package:breast_cancer/core/utils/title_text_widget.dart';
 import 'package:breast_cancer/generated/l10n.dart';
@@ -190,5 +189,4 @@ class AppMethods {
     );
     return confirmed ?? false;
   }
-
 }

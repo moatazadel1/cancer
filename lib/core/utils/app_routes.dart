@@ -41,7 +41,6 @@ abstract class AppRoutes {
   static const String kEditInfoView = '/EditInfoView';
   static const String kEditPdfView = '/EditPdfView';
 
-
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -85,9 +84,13 @@ abstract class AppRoutes {
             return HomeView(userType: userType);
           }),
       GoRoute(
-        path: kLanguageView,
-        builder: (context, state) => const LanguageView(),
-      ),
+          path: kLanguageView,
+          builder: (context, state) {
+            final userType = state.extra as String;
+            return LanguageView(
+              userType: userType,
+            );
+          }),
       GoRoute(
           path: kProfileView,
           builder: (context, state) {
@@ -126,7 +129,7 @@ abstract class AppRoutes {
           builder: (context, state) {
             final args = state.extra as PdfViewArguments;
 
-            return  PdfView(
+            return PdfView(
               userType: args.userType,
               patientId: args.patientId,
               pdfPath: args.pdfPath,
@@ -136,19 +139,19 @@ abstract class AppRoutes {
         path: kDoctorAccessView,
         builder: (context, state) {
           final pdfPath = state.extra as String;
-          return  DoctorAccessView(
+          return DoctorAccessView(
             pdfPath: pdfPath,
           );
-  },),
+        },
+      ),
       GoRoute(
           path: kPatientAccessView,
           builder: (context, state) {
-            final pdfPath = state.extra as String;
-            return   PatientAccessView(
-              // pdfPath: pdfPath,
-            );
-          }
-      ),
+            // final pdfPath = state.extra as String;
+            return const PatientAccessView(
+                // pdfPath: pdfPath,
+                );
+          }),
       GoRoute(
         path: kEditPdfView,
         name: AppRoutes.kEditPdfView,

@@ -6,7 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class LanguageViewBody extends StatefulWidget {
-  const LanguageViewBody({super.key});
+  final String userType;
+
+  const LanguageViewBody({super.key, required this.userType});
 
   @override
   State<LanguageViewBody> createState() => _LanguageViewBodyState();
@@ -78,7 +80,8 @@ class _LanguageViewBodyState extends State<LanguageViewBody> {
                     _language = value!;
                   });
                   languageProvider.setLanguage(value!);
-                  GoRouter.of(context).push(AppRoutes.kRootView);
+                  GoRouter.of(context).push(AppRoutes.kRootView,extra: widget.userType == 'patient' ? 'patient' : 'doctor'
+                  );
                 },
               ),
               RadioListTile<ChoosingLanguage>(
@@ -94,7 +97,7 @@ class _LanguageViewBodyState extends State<LanguageViewBody> {
                     _language = value!;
                   });
                   languageProvider.setLanguage(value!);
-                  GoRouter.of(context).push(AppRoutes.kRootView);
+                  GoRouter.of(context).push(AppRoutes.kRootView,extra: widget.userType == 'patient' ? 'patient' : 'doctor');
                 },
               ), // const SizedBox(
               //   height: 31,
