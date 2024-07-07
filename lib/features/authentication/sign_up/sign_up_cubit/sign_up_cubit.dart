@@ -10,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-
   SignUpCubit() : super(SignUpInitial());
 
   Future<void> registerUser({
@@ -83,6 +82,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       }
     }
   }
+
   Future<void> updateUser({
     required String collectionName,
     String? name,
@@ -147,38 +147,3 @@ class StorageService {
     }
   }
 }
-
-
-//   Future<void> fetchUserData(String collectionName) async {
-//     try {
-//       emit(SignUpLoading());
-//       final auth = FirebaseAuth.instance;
-//       final user = auth.currentUser;
-//       if (user == null) {
-//         emit(SignUpFailure(errMessage: 'No user is currently signed in.'));
-//         return;
-//       }
-//       final uid = user.uid;
-//       final docSnapshot = await FirebaseFirestore.instance
-//           .collection(collectionName)
-//           .doc(uid)
-//           .get();
-//       if (docSnapshot.exists) {
-//         final userData = UserModel.fromMap(docSnapshot.data()!);
-//         emit(SignUpSuccess(userModel: userData));
-//       } else {
-//         emit(SignUpFailure(errMessage: 'User not found.'));
-//       }
-//     } catch (error) {
-//       emit(SignUpFailure(errMessage: error.toString()));
-//     }
-//   }
-
-
-// Future<String> _uploadImageToStorage(String uid, XFile imageFile) async {
-//   final storageRef =
-//       FirebaseStorage.instance.ref().child('userImages/$uid.jpg');
-//   final uploadTask = storageRef.putFile(File(imageFile.path));
-//   final snapshot = await uploadTask;
-//   return await snapshot.ref.getDownloadURL();
-// }

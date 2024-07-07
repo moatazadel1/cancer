@@ -319,9 +319,44 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                 ],
               ),
             ),
-            // const SizedBox(
-            //   height: 24,
-            // ),
+            const SizedBox(
+              height: 24,
+            ),
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: () async {
+                  await AppMethods.showErrorORWarningDialog(
+                    context: context,
+                    subtitle: 'Confirm Logout?',
+                    fct: () async {
+                      await FirebaseAuth.instance.signOut();
+                      if (!mounted) return;
+                      GoRouter.of(context).push(AppRoutes.kJoinAsView);
+                    },
+                    isError: false,
+                    img: AppAssets.warningImg,
+                  );
+                  // if (!mounted) return;
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: const Color(0xffFFB8B8),
+                ),
+                icon: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                label: const Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 24,
+            ),
           ],
         ),
       ),
